@@ -146,6 +146,4 @@ def page_not_found(e):
 # to start the server
 if __name__ == '__main__':
     init_db()
-    app.secret_key='super secret key'
-    app.debug=True
     app.run()
