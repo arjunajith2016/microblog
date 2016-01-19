@@ -1,5 +1,4 @@
-# MicroBlog
------------
+#                                                       MicroBlog
 
 ## Synopsis
 
