@@ -144,6 +144,8 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 # to start the server
-if __name__ == '__main__':
-    init_db()
-    app.run()
+#if __name__ == '__main__':
+init_db()
+app.secret_key='super secret key'
+app.debug=True
+#    app.run()
