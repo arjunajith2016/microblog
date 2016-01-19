@@ -1,0 +1,109 @@
+<!doctype html>
+<title>MicroBlog</title>
+<link rel=stylesheet type='text/css' href="{{ url_for('static', filename='style.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='ico/3.ico') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='jquery-1.12.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='parallax.js-1.3.1/parallax.js') }}"></script>
+<meta charset="utf-8">
+
+<header class="parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='bg6.jpg') }}">
+        <h1><span>MicroBlog<sup>TM</sup></span><br>The blog that doesn't compromise</h1>
+</header>
+<div class="parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='bg5.jpg') }}">
+    <section>
+        <div class=page>
+            <nav id='navbar'>
+                <ul>
+                    <a href="{{ url_for('register') }}"> <li>Register</li> </a>
+                    {% if not flag %}
+                        {% if not session.logged_in %}
+                            <a href="{{ url_for('login') }}"> <li>Log in</li> </a>
+                        {% else %}
+                            <a href="{{ url_for('logout') }}"> <li>Log out</li> </a>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <div class="sidebar" id="sidebar">
+            {% if session.logged_in %}
+                <h1>Hints:</h1>
+                <p>
+                Use &lt;<span id='g'>h1</span>&gt;, &lt;<span id='g'>h2</span>&gt; etc. for headings<br>
+                &lt;<span id='g'>p</span>&gt; for paragraphs<br>
+                &lt;<span id='g'>img</span> src='<span id='y'>path to image</span>'/&gt; for images<br>
+                &lt;<span id='g'>span</span>&gt; to make text red<br>
+                &lt;<span id='g'>em</span>&gt; to emphasize text<br>
+                &lt;<span id='g'>strong</span>&gt; for making words bold<br>
+                &lt;<span id='g'>mark</span>&gt; to highlight text<br>
+                </p>
+                <h3>Usage:</h3>
+                <p>
+                &lt;<span id='g'>tag</span>&gt;<span id='b'>Your text comes here</span>&lt;<span id='g'>/tag</span>&gt;<br>
+                Eg: &lt;<span id='g'>h1</span>&gt;<span id='b'>A Heading</span>&lt;<span id='g'>/h1</span>&gt;<br>
+            {% else %}
+                <p>Log in to have the ability to share and delete posts!</p>
+            {% endif %}
+            </div>
+            <script src="{{ url_for('static', filename='script.js') }}"></script>
+            
+            {% for message in get_flashed_messages() %}
+                <div class=flash>{{ message }}</div>
+            {% endfor %}
+
+            {% if session.logged_in %}
+            <form action="{{ url_for('add_entry') }}" enctype="multipart/form-data" method=post class=add-entry>
+                <p>
+                    <input placeholder='Title' type=text size=30 name=title>
+                </p>
+                <p>
+                    <textarea placeholder='Feel free to use HTML tags. Infact, it makes things look better!' name=text rows=5 cols=40></textarea>
+                </p>
+                <!--<p>
+                    <input type=file name=bob id='file_button'>
+                </p>-->
+                <button type=submit value=Share>
+                    <h2>Share</h2>
+                </button>
+            </form>
+            {% endif %}
+
+            <div class=entries>
+            {% for entry in entries %}
+                <div class='info'>
+                    #{{ entry.id }}<br>
+                    Posted by: {{ entry.user }}<br>
+                    {{ entry.date }}<br>
+                    {{ entry.time }}
+                </div>
+                {% if session.logged_in and session.user == entry.user %}
+                <form action="{{ url_for('del_entry') }}" method=post class='delete'>
+                    <details>
+                        <summary>Delete</summary>
+                        <button class='delete' name=del type=submit value="{{ entry.id }}">Confirm</button>
+                    </details>
+                </form>
+                {% endif %}
+                <article>
+                    <h2><span>{{ entry.title }}</span></h2>
+                    {{ entry.text|safe }}<br>
+                </article>
+            {% else %}
+                <article><em>Unbelievable.  No entries here so far</em></article>
+            {% endfor %}
+            <footer>
+                Made using <a href='http://flask.pocoo.org/'>Flask</a>.<br>
+                <br>
+                External components used:<br>
+                <a href='http://pixelcog.github.io/parallax.js/'>Parallax.js</a><br>
+                <a href='https://jquery.com/'>jQuery</a><br>
+                <br>
+                Font: <a href='http://www.digitaldownloads.io/fonts/brandon-grotesque-bold-free/'>Brandon Grotesque</a><br>
+                <br>
+                Arjun Ajith<br>
+                arjun.ajith@grofers.com<br>
+                2016
+            </footer>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,24 @@
+<!doctype html>
+<title>Fire!</title>
+<link rel=stylesheet type='text/css' href="{{ url_for('static', filename='style.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='ico/1.ico') }}">
+<meta charset="utf-8">
+
+<img id='obiwan' src="{{ url_for('static', filename='Mindtrick.png') }}"/>
+
+<nav id="navbar">
+      <ul>
+          <a href="{{ url_for('home') }}"> <li>Go back</li> </a>
+          {% if not flag %}
+              {% if not session.logged_in %}
+                  <a href="{{ url_for('login') }}"> <li>Log in</li> </a>
+              {% else %}
+                  <a href="{{ url_for('logout') }}"> <li>Log out</li> </a>
+              {% endif %}
+          {% endif %}
+      </ul>
+</nav>
+
+<header>
+    <h1><span>THIS IS NOT THE PAGE YOU ARE LOOKING FOR</span><br>May the <span>404</span>ce be with you</h1>
+</header>

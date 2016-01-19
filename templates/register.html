@@ -1,0 +1,46 @@
+<!doctype html>
+<title>MicroBlog - Register</title>
+<link rel=stylesheet type='text/css' href="{{ url_for('static', filename='style.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='ico/3.ico') }}">
+<meta charset="utf-8">
+
+<img id='login_img' src="{{ url_for('static', filename='bg5.jpg') }}"/>
+
+<div class="parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='bg5.jpg') }}">
+    <div class='login'>
+        <nav id="navbar">
+              <ul>
+                  <a href="{{ url_for('home') }}"> <li>Go Back</li> </a>
+                  {% if not flag %}
+                      {% if not session.logged_in %}
+                          <a href="{{ url_for('login') }}"> <li>Log in</li> </a>
+                      {% else %}
+                          <a href="{{ url_for('logout') }}"> <li>Log out</li> </a>
+                      {% endif %}
+                  {% endif %}
+              </ul>
+        </nav>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+        {% for message in get_flashed_messages() %}
+            <div class=flash>{{ message }}</div>
+        {% endfor %}
+
+        <h2>Register</h2>
+        {% if error %}<p><span>Error:</span> {{ error }}{% endif %}
+        <form action="{{ url_for('register') }}" method=post>
+            <p>
+                <input  placeholder='Name' type=text name=name>
+            </p>
+            <p>
+                <input  placeholder='Username' type=text name=username>
+            </p>
+            <p>
+                <input  placeholder='Password' type=password name=password>
+            </p>
+            <button type=submit value=Register>
+                <h2>Register</h2>
+            </button>
+        </form>
+    </div>
+</div>
