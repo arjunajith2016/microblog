@@ -1,4 +1,4 @@
-# \t\t\t\t\t\tMicroBlog
+# MicroBlog
 
 ## Synopsis
 
