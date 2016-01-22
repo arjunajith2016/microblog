@@ -194,4 +194,5 @@ def page_not_found(e):
 # to start the server
 if __name__ == '__main__':
     #init_db()
-    #app.run()
+    app.run(host='0.0.0.0')
+
