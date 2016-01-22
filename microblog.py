@@ -9,7 +9,7 @@ from werkzeug import secure_filename
 
 
 # configuration
-DATABASE = '/tmp/flaskr.db'
+DATABASE = './flaskr.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
@@ -145,5 +145,5 @@ def page_not_found(e):
 
 # to start the server
 if __name__ == '__main__':
-    init_db()
+    #init_db()
     app.run()
