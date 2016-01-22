@@ -17,6 +17,10 @@ body {
 	//min-width: 1000px;
 }
 
+.title {
+	font-size: 32px;
+}
+
 p {
 	text-align: justify;
 }
@@ -124,13 +128,33 @@ input {
 	text-align: center;
 }
 
+.likes {
+	margin-top: 1em;
+	font-size: 1em;
+	font-family: brandonGotesqueLight, Futura, Tahoma, sans-serif;
+	color: white;
+	width:100px;
+	float: left;
+	color:rgb(150,200,255);
+	text-align: center;
+	background-color: rgba(0,100,200,0);
+	//border:1px solid rgba(255,255,255,0.3);
+	cursor: pointer;
+    //box-shadow: 0 -3px 5px rgba(0,0,0,0.5) inset;
+}
+
+.likes:hover {
+	background-color: rgba(0,170,100,0.8);
+	color:rgb(150,255,200);
+}
+
 textarea {
 	font-size: 1em;
 }
 
 ::-webkit-input-placeholder {
 	text-align: center;
-	color:rgba(255,255,255,0.8);
+	color:rgba(255,255,255,1);
 }
 
 #file_button {
@@ -150,7 +174,7 @@ section {
 }
 
 .page { 
-	//min-width: 40em;
+	//min-width: 100em;
 	background-color: rgba(0,40,60,0.7);
 	margin: 5em auto;
 	border: 0px solid #ccc;
@@ -169,7 +193,7 @@ form {
 	text-align: left;
 	margin-left: 1em;
 	font-size: 14px;
-	width: 100px;
+	width: 300px;
 	float: left;
 }
 
@@ -198,7 +222,7 @@ article {
 	border-bottom: 1px solid white;
 	margin-top: 2em;
 	margin-bottom: 2em;
-	padding-bottom: 1em;
+	padding-bottom: 5em;
 }
 
 footer {

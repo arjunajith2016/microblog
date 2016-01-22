@@ -6,17 +6,15 @@
 <script type="text/javascript" src="{{ url_for('static', filename='parallax.js-1.3.1/parallax.js') }}"></script>
 <meta charset="utf-8">
 
-<header class="parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='bg6.jpg') }}">
-        <h1><span>MicroBlog<sup>TM</sup></span><br>The blog that doesn't compromise</h1>
+<header class="parallax-window" data-parallax="scroll" data-image-src="https://cdn.photographylife.com/wp-content/uploads/2014/06/Nikon-D810-Image-Sample-6.jpg">
+        <h1><span>{{entries[0].user}}</h1>
 </header>
 <div class="parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='bg5.jpg') }}">
     <section>
         <div class=page>
             <nav id='navbar'>
                 <ul>
-                    {% if not session.logged_in %}
-                    <a href="{{ url_for('register') }}"> <li>Register</li> </a>
-                    {% endif %}
+                    <a href="{{ url_for('home') }}"> <li>Go Back</li> </a>
                     {% if not flag %}
                         {% if not session.logged_in %}
                             <a href="{{ url_for('login') }}"> <li>Log in</li> </a>
@@ -52,32 +50,15 @@
                 <div class=flash>{{ message }}</div>
             {% endfor %}
 
-            {% if session.logged_in %}
-            <form action="{{ url_for('add_entry') }}" enctype="multipart/form-data" method=post class=add-entry>
-                <p>
-                    <input placeholder='Title' type=text size=30 name=title>
-                </p>
-                <p>
-                    <textarea placeholder='Feel free to use HTML tags. Infact, it makes things look better!' name=text rows=5 cols=40></textarea>
-                </p>
-                <!--<p>
-                    <input type=file name=bob id='file_button'>
-                </p>-->
-                <button type=submit value=Share>
-                    <h2>Publish</h2>
-                </button>
-            </form>
-            {% endif %}
-
+            
             <div class=entries>
             {% for entry in entries %}
                 <div class='info'>
                     #{{ entry.id }}<br>
-                    Posted by: <a href='{{ entry.user }}'>{{ entry.user }}</a><br>
                     {{ entry.date }}<br>
                     {{ entry.time }}
                 </div>
-                {% if session.logged_in and (session.user == entry.user or session.user == 'Aj') %}
+                {% if session.logged_in and session.user == entry.user %}
                 <form action="{{ url_for('del_entry') }}" method=post class='delete'>
                     <details>
                         <summary>Delete</summary>

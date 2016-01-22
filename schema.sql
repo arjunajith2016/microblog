@@ -5,7 +5,8 @@ create table entries (
   text text not null,
   date text not null,
   time text not null,
-  user text not null
+  user text not null,
+  likes integer
 );
 
 drop table if exists users;
