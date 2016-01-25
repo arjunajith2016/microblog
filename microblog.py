@@ -10,7 +10,7 @@ from werkzeug import secure_filename
 
 # configuration
 DATABASE = './flaskr.db'
-#DEBUG = True
+DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
@@ -89,7 +89,7 @@ def home():
     entries = [dict(title=row[0], text=row[1], date=row[2], time=row[3], id=row[4], user=row[5], likes=row[6]) for row in cur.fetchall()]
     return render_template('home.html', entries=entries)
 
-@app.route('/<username>')
+@app.route('/a_human_being_called_<username>')
 def user(username):
     cur = g.db.execute('select title, text, date, time, id, user, likes from entries where user = (?) order by id desc', [username])
     entries = [dict(title=row[0], text=row[1], date=row[2], time=row[3], id=row[4], user=row[5], likes=row[6]) for row in cur.fetchall()]
